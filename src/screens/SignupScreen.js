@@ -1,20 +1,56 @@
-import React from 'react'
-import { View, StyleSheet, Text } from 'react-native'
-import { Button } from 'react-native-web'
+import React, { useState, useContext, useEffect } from 'react'
+import { View, StyleSheet } from 'react-native'
+import { Text, Input, Button } from 'react-native-elements'
+import { Context as AuthContext } from '../context/AuthContext'
+import axios from "axios";
 
 const SignupScreen = ({navigation}) => {
+
+    const {state, signup} = useContext(AuthContext)
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
     
+
+
     return (
-        <>
-        <Text style={{fontSize:48}} >SignupScreen</Text>
+        <View style={styles.container} >
+        <Text h3 style={{marginBottom: 25}} >Signup</Text>
+        <Input 
+            label="Email" 
+            value={email} 
+            onChangeText={setEmail}
+            autoCapitalize="none"
+            autoCorrect={false}
+            />
+        <Input 
+            label="Password" 
+            value={password} 
+            onChangeText={setPassword} 
+            autoCapitalize="none"
+            autoCorrect={false}
+            secureTextEntry
+            />
         <Button 
-            title="SignIn"
-            onPress={() => navigation.navigate('Signin')}
+            title="SignUp"
+            onPress={() => signup({email, password})}
         />
-        </>
+        </View>
         )
 }
 
-const styles = StyleSheet.create({})
+SignupScreen.navigationOptions = () => {
+    return {
+      headerShown: false,
+    };
+  };
+
+const styles = StyleSheet.create({
+    container: {
+        margin: 15,
+        flex: 1,
+        justifyContent: 'center',
+        marginBottom: 200
+    }
+})
 
 export default SignupScreen
