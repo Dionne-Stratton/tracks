@@ -1,39 +1,20 @@
-import React, { useState, useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { View, StyleSheet, TouchableOpacity } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import { Text } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
-import axios from "axios";
+import AuthForm from '../components/AuthForm'
 
 const SignupScreen = ({navigation}) => {
 
     const {state, signup} = useContext(AuthContext)
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     
-
-
     return (
-        <View style={styles.container} >
-        <Text h3 style={{marginBottom: 25}} >Signup</Text>
-        <Input 
-            label="Email" 
-            value={email} 
-            onChangeText={setEmail}
-            autoCapitalize="none"
-            autoCorrect={false}
-            />
-        <Input 
-            label="Password" 
-            value={password} 
-            onChangeText={setPassword} 
-            autoCapitalize="none"
-            autoCorrect={false}
-            secureTextEntry
-            />
-        <Text style={styles.errorMessage} >{state.errorMessage}</Text>
-        <Button 
-            title="SignUp"
-            onPress={() => signup({email, password})}
+        <View style={styles.container}>
+        <AuthForm 
+            header="Sign Up for Tracker"
+            errorMessage={state.errorMessage}
+            buttonText="Sign Up"
+            onSubmit={signup}
         />
         <TouchableOpacity onPress={() => navigation.navigate('Signin')} >
             <Text style={styles.link} >Already have an account? Sign in instead.</Text>
@@ -46,7 +27,7 @@ SignupScreen.navigationOptions = () => {
     return {
       headerShown: false,
     };
-  };
+};
 
 const styles = StyleSheet.create({
     container: {
@@ -54,11 +35,6 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginBottom: 200
-    },
-    errorMessage: {
-        fontSize: 16,
-        color: 'red',
-        marginBottom: 15
     },
     link: {
         color: 'blue',
