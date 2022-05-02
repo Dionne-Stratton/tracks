@@ -11,6 +11,7 @@ import TrackListScreen from './src/screens/TrackListScreen';
 import {Provider as AuthProvider} from './src/context/AuthContext'
 import { setNavigator } from './src/navigationRef';
 import {FontAwesome} from '@expo/vector-icons'
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
 const trackListFlow = createStackNavigator({
   TrackList: TrackListScreen,
@@ -23,7 +24,8 @@ trackListFlow.navigationOptions = {
 }
 
 const switchNavigator = createSwitchNavigator({
-  loginFlow: createStackNavigator({
+  resolveAuth: ResolveAuthScreen,
+  loginFlow: createStackNavigator ({
     Signup: SignupScreen,
     Signin: SigninScreen,
   }),
