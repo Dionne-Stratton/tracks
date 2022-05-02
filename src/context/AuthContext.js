@@ -16,7 +16,7 @@ const signup = (dispatch) => {
             const response = await trackerApi.post('/auth/signup', {email, password})
             console.log(response.data)
         } catch (error) {
-            dispatch({type: 'add_error', payload: "bad request"})
+            dispatch({type: 'add_error', payload: "Email already registered."})
         }
     }
 }

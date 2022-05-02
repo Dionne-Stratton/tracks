@@ -30,6 +30,7 @@ const SignupScreen = ({navigation}) => {
             autoCorrect={false}
             secureTextEntry
             />
+        <Text style={styles.errorMessage} >{state.errorMessage}</Text>
         <Button 
             title="SignUp"
             onPress={() => signup({email, password})}
@@ -50,6 +51,11 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         marginBottom: 200
+    },
+    errorMessage: {
+        fontSize: 16,
+        color: 'red',
+        marginBottom: 15
     }
 })
 
