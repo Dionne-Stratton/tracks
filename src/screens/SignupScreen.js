@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react'
-import { View, StyleSheet } from 'react-native'
+import { View, StyleSheet, TouchableOpacity } from 'react-native'
 import { Text, Input, Button } from 'react-native-elements'
 import { Context as AuthContext } from '../context/AuthContext'
 import axios from "axios";
@@ -35,6 +35,9 @@ const SignupScreen = ({navigation}) => {
             title="SignUp"
             onPress={() => signup({email, password})}
         />
+        <TouchableOpacity onPress={() => navigation.navigate('Signin')} >
+            <Text style={styles.link} >Already have an account? Sign in instead.</Text>
+        </TouchableOpacity>
         </View>
         )
 }
@@ -56,6 +59,11 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: 'red',
         marginBottom: 15
+    },
+    link: {
+        color: 'blue',
+        marginTop: 30,
+        fontSize: 16
     }
 })
 
