@@ -1,13 +1,17 @@
 import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
+import {Text} from 'react-native-elements'
+import { SafeAreaView } from 'react-native-safe-area-context'
+import Map from '../components/Map'
+
 
 const TrackCreateScreen = () => {
     return (
-        <View style={styles.container}>
-        <Text style={styles.header} >TrackCreateScreen</Text>
-        <Text style={styles.text} >This is some other info about this screen.</Text>
-        </View>
+        <SafeAreaView forceInset={{ top: 'always'}}>
+            <Text h2>Create</Text>
+            <Map />
+        </SafeAreaView>
         )
 }
 
