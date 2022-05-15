@@ -4,7 +4,7 @@ import { StyleSheet} from 'react-native'
 import {FontAwesome} from '@expo/vector-icons'
 import {Text} from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { requestForegroundPermissionsAsync } from 'expo-location'
+import { Accuracy, requestForegroundPermissionsAsync, watchPositionAsync } from 'expo-location'
 import Map from '../components/Map'
 
 
@@ -16,6 +16,14 @@ const TrackCreateScreen = () => {
           const { granted } = await requestForegroundPermissionsAsync();
           if (!granted) {
             throw new Error('Location permission not granted');
+          } else {
+              await watchPositionAsync({
+                  accuracy: Accuracy.BestForNavigation,
+                  timeInterval: 1000,
+                  distanceInterval: 10
+              }, (location) => {
+                console.log(location)
+              })
           }
         } catch (e) {
           setErr(e);
