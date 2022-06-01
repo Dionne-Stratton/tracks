@@ -13,6 +13,7 @@ import { setNavigator } from './src/navigationRef';
 import {FontAwesome} from '@expo/vector-icons'
 import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 import { Provider as LocationProvider } from './src/context/LocationContext';
+import { Provider as TrackProvider } from './src/context/TrackContext';
 
 const trackListFlow = createStackNavigator({
   TrackList: TrackListScreen,
@@ -41,10 +42,12 @@ const App = createAppContainer(switchNavigator);
 
 export default () => {
   return (
+    <TrackProvider>
     <LocationProvider>
       <AuthProvider>
         <App ref={(navigator) => {setNavigator(navigator)}} />
       </AuthProvider>
     </LocationProvider>
+    </TrackProvider>
   )
 }
