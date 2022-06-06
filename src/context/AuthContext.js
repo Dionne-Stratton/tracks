@@ -12,7 +12,6 @@ const authReducer = (state, action) => {
         case 'clear_error_message':
             return {...state, errorMessage: ''}
         case 'signout':
-            console.log('signout case here')
             return {token: null, errorMessage: ''}
         default:
             return state
@@ -58,7 +57,6 @@ const signin = dispatch => async ({email, password}) => {
 const signout = dispatch => async () => {
         await AsyncStorage.removeItem('token')
         dispatch({type:'signout'})
-        console.log('ready to navigate back?')
         navigate('Signin')
     }
 

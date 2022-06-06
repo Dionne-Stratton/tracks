@@ -1,4 +1,4 @@
-import createDataContex from './CreateDataContext'
+import CreateDataContex from './CreateDataContext'
 
 const locationReducer = (state, action) => {
     switch (action.type) {
@@ -37,7 +37,7 @@ const addLocation = dispatch => (location, recording) => {
 const reset = dispatch => () => {
     dispatch({ type: 'reset'})
 }
-export const { Context, Provider } = createDataContex(
+export const { Context, Provider } = CreateDataContex(
     locationReducer,
     { startRecording, stopRecording, addLocation, changeName, reset },
     { name: '',recording: false, locations: [], currentLocation: null }
